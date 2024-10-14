@@ -1,0 +1,20 @@
+подлкючение скриптов через admin_enqueue_scripts
+для публичной части
+function Add_Vue_init_public() {
+    wp_enqueue_script('Vue', plugins_url('libraris/vue/Vue.js', __FILE__), '3.0');
+}
+add_action( 'wp_head', 'Add_Vue_init_public' ); // подключаю на клиенте
+
+для админки хук admin_enqueue_scripts
+function Add_Vue_init_admin() {
+    wp_enqueue_script('Vue', plugins_url('libraris/vue/Vue.js', __FILE__),'3.0');
+}
+add_action( 'admin_enqueue_scripts', 'Add_Vue_init_admin' ); // подключаю  в админке
+
+подлкючение скриптов через хук
+
+function Add_Vue_init_admin() {
+   ?> <script src="<? echo plugins_url('libraris/vue/Vue.js', __FILE__); ?>"></script><?
+}
+add_action( 'wp_admin', 'Add_Vue_init_admin');// подключаю в админке
+add_action( 'wp_head', 'Add_Vue_init_admin' );// подключаю на клиенте
